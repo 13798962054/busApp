@@ -1,0 +1,37 @@
+
+button:not([size='mini']){
+  width: 100%;
+}
+
+.item{
+  padding: 20rpx;
+  border: 1rpx #0f1 solid;
+  margin: 20rpx;
+  height: 320rpx;
+  line-height: 80rpx;
+}
+
+.personalIcon{
+  width: 200rpx;
+  height: 200rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.personalIcon image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.info{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.detailButton{
+  width: 200rpx;
+  position: relative;
+  bottom: 180rpx;
+  left: 450rpx;
+}

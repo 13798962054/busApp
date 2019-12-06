@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/driver/driver",
+    "pages/passenger/passenger",
+    "pages/driverPost/driverPost",
+    "pages/passengerPost/passengerPost",
+
+
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/driver/driver",
+        "text": "司机",
+        "iconPath": "utils/img/car.png",
+        "selectedIconPath": "utils/img/carSelected.png"
+      },
+      {
+        "pagePath": "pages/passenger/passenger",
+        "text": "乘客",
+        "iconPath": "utils/img/car.png",
+        "selectedIconPath": "utils/img/carSelected.png"
+      }
+    ]
+  },
+
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

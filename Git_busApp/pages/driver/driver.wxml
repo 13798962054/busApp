@@ -1,0 +1,13 @@
+<button type="primary" id="postButton">{{buttonMsg}}</button>
+
+<view class="item" bindtap="toDetail">
+  <view class="personalIcon">
+    <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575626090590&di=8fed0d53ced83f6408f3dcbcc6c3eb32&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg4%2FM06%2F00%2F01%2FCg-4WlQG4OqIP6KgAAMf00jt8SwAARHfwFbSSAAAx_r606.jpg"></image>
+  </view>
+  <view class="info">
+    <view class="carStyle">车型</view>
+    <view class="name">姓名</view>
+    <view class="time">发车时间</view>
+    <view class="fromTo">from-to-to-to</view>
+  </view>
+</view>
