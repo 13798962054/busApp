@@ -1,0 +1,45 @@
+<view class="personalIcon">
+  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575626090590&di=8fed0d53ced83f6408f3dcbcc6c3eb32&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg4%2FM06%2F00%2F01%2FCg-4WlQG4OqIP6KgAAMf00jt8SwAARHfwFbSSAAAx_r606.jpg"></image>
+</view>
+<view class="personalName">
+  <text>{{dbData.name}}</text>
+</view>
+
+<view class="info">
+  <view class="line">
+    <text>车型：{{dbData.carStyle}}</text>
+  </view>
+
+  <view class="line">
+    <text>发车点：{{dbData.fromPos}}</text>
+  </view>
+
+  <view class="line">
+    <text>经停点：{{dbData.toPos}}</text>
+  </view>
+
+  <view class="line">
+    <text>发车日期：{{dbData.date}}</text>
+  </view>
+
+  <view class="line">
+    <text>发车时间：{{dbData.time}}</text>
+  </view>
+
+  <view class="line">
+    <text>可坐：{{dbData.seat}}</text>
+  </view>
+
+  <view class="line">
+    <text>已座：{{dbData.subSeat}}</text>
+  </view>
+
+  <view class="line">
+    <text>已经预约行李：{{dbData.subBaggage}}</text>
+  </view>
+
+  <view class="line">
+    <button type="primary" bindtap="appointment">预约车主</button>
+    <button type="cancel" bindtap="cancel">返回</button>
+  </view>
+</view>

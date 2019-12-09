@@ -7,7 +7,7 @@ button:not([size='mini']){
   padding: 20rpx;
   border: 1rpx #0f1 solid;
   margin: 20rpx;
-  height: 320rpx;
+  height: 320rpx; 
   line-height: 80rpx;
 }
 

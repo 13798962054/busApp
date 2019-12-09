@@ -1,2 +1,94 @@
-<!--pages/driverPost/driverPost.wxml-->
-<text>pages/driverPost/driverPost.wxml</text>
+ <view class="personalIcon">
+  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575626090590&di=8fed0d53ced83f6408f3dcbcc6c3eb32&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg4%2FM06%2F00%2F01%2FCg-4WlQG4OqIP6KgAAMf00jt8SwAARHfwFbSSAAAx_r606.jpg"></image>
+</view>
+<view class="personalName">
+  <text>{{name}}</text>
+</view>
+
+<view class="info">
+  <view class="line">
+    <view class="txt">
+      <text>车型：</text>
+    </view>
+    <view class="input">
+      <picker bindchange="bindCarStylePickerChange" value="{{carStyleIndex}}" range="{{carStyleArray}}">
+        <view class="picker">
+          {{carStyleArray[carStyleIndex]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>发车点：</text>
+    </view>
+    <view class="input">
+      <picker bindchange="bindFromPickerChange" value="{{fromIndex}}" range="{{fromArray}}">
+        <view class="picker">
+          {{fromArray[fromIndex]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>经停点：</text>
+    </view>
+    <view class="input">
+      <view class="picker">{{toCheckGroup}}</view>
+    </view>
+    <view class="toCheckboxGroup">
+      <checkbox-group bindchange="toCheckboxChange">
+        <checkbox wx:for="{{toArray}}" wx:key="{{index}}" value="{{index}}">
+            <text>{{item}}</text>
+        </checkbox>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>发车日期：</text>
+    </view>
+    <view class="input">
+      <picker mode="date" value="{{date}}" start="2019-12-12" end="2022-12-12" bindchange="bindDateChange">
+        <view class="picker">
+          {{date}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>发车时间：</text>
+    </view>
+    <view class="input">
+      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+        <view class="picker">
+          {{time}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>可坐：</text>
+    </view>
+    <view class="input">
+      <picker bindchange="bindSeatPickerChange" value="{{seatIndex}}" range="{{seatArray}}">
+        <view class="picker">
+          {{seatArray[seatIndex]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <button type="primary" bindtap="check">发布</button>
+    <button type="cancel" bindtap="cancel">取消</button>
+  </view>
+</view>

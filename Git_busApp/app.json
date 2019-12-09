@@ -4,8 +4,8 @@
     "pages/passenger/passenger",
     "pages/driverPost/driverPost",
     "pages/passengerPost/passengerPost",
-
-
+    "pages/driverDetail/driverDetail",
+    "pages/appointment/appointment",
     "pages/index/index",
     "pages/logs/logs"
   ],

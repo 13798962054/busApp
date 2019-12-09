@@ -1,0 +1,6 @@
+.input textarea{
+  border: 1px #ccc solid;
+  width: 580rpx;
+  margin: auto;
+  padding: 25rpx 40rpx;
+}

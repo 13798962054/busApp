@@ -8,3 +8,26 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.personalIcon{
+  width: 200rpx;
+  height: 200rpx;
+  overflow: hidden;
+  margin: auto;
+}
+
+.personalIcon image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.personalName{
+  text-align: center;
+  color: #ccc;
+}
+
+.line{
+  line-height: 100rpx;
+  margin: 15rpx 40rpx;
+}

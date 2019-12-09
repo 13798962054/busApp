@@ -10,7 +10,8 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"coverView": true
+		"coverView": true,
+    "checkSiteMap": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
@@ -31,13 +32,42 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/driverPost/driverPost",
+					"pathName": "pages/driverPost/driverPost",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/driverDetail/driverDetail",
+					"pathName": "pages/driverDetail/driverDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/appointment/appointment",
+					"pathName": "pages/appointment/appointment",
+					"scene": null
+				}
+			]
 		}
 	}
 }

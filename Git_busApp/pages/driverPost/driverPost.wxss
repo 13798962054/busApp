@@ -1,1 +1,30 @@
-/* pages/driverPost/driverPost.wxss */
+
+.txt{
+  display: block;
+  width: 200rpx;
+  text-align: right;
+  float: left;
+}
+
+.picker{
+  display: inline-block;
+  width: 360rpx;
+  height: 100rpx;
+  border: 1px solid #ccc;
+  padding: 0 40rpx;
+}
+
+button{
+  width: 100%;
+  margin: 30rpx 0;
+}
+
+.toCheckboxGroup{
+  margin: auto;
+  /* height: 500rpx; */
+}
+
+checkbox{
+  display: block;
+  padding-left: 50rpx;
+}
