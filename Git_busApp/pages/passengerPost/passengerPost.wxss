@@ -1,1 +1,48 @@
-/* pages/passengerPost/passengerPost.wxss */
+
+.txt{
+  display: block;
+  width: 200rpx;
+  text-align: right;
+  float: left;
+}
+
+.picker{
+  display: inline-block;
+  width: 360rpx;
+  height: 100rpx;
+  border: 1px solid #ccc;
+  padding: 0 40rpx;
+}
+
+button{
+  width: 100%;
+  margin: 30rpx 0rpx;
+  clear: both;
+}
+
+.toCheckboxGroup{
+  /* margin: auto; */
+  float: left;
+  /* height: 500rpx; */
+}
+
+checkbox{
+  display: block;
+  padding-left: 50rpx;
+}
+
+.textArea{
+  float: left;
+  display: inline-block;
+  border: 1px #ccc solid;
+  width: 380rpx;
+  height: 240rpx;
+  margin-bottom: 50rpx;
+  padding: 30rpx;
+}
+
+.textArea textarea{
+  width: 100%;
+  height: 100%;
+  line-height: 2rem;
+}

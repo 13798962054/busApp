@@ -1,20 +1,96 @@
-// pages/passenger/passenger.js
+// pages/driver/driver.js
+//获取应用实例
+const app = getApp()
+const driverDB = wx.cloud.database().collection("passenger")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
+    buttonMsg: "我要约车",
+    step: 1,
+    counterId: '',
+    openid: '',
+    count: null,
+    queryResult: '',
+
+    dbData: null
   },
+
+  toDetail: function (e) {
+    console.log(e.currentTarget.dataset.variable)
+    wx.navigateTo({
+      url: '../passengerDetail/passengerDetail?id=' + e.currentTarget.dataset.variable,
+
+    })
+  },
+
+  toPassengerPost: function () {
+    wx.navigateTo({
+      url: '../passengerPost/passengerPost',
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
 
+    driverDB.get({
+      success: res => {
+        this.setData({
+          dbData: res.data
+        })
+      },
+      fail: res => {
+        console.log("设置dbData失败")
+      }
+    })
   },
 
+  getUserInfo: function (e) {
+    console.log(e)
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+    }
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +102,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -47,7 +123,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad()
   },
 
   /**
@@ -62,5 +138,56 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 从云数据库提取数据
+   */
+  getDataFromCloud: function () {
+    console.log("A")
+    driverDB.get({
+      success: res => {
+        return res.data
+      },
+      fail: res => {
+        return null
+      }
+    })
+  },
+
+  /**
+   * 监听取消按钮
+   */
+  cancel: function () {
+    wx.navigateBack({
+
+    })
+  },
+
+  /**
+   * 删除当前item
+   */
+  deleteItem: function (e) {
+    const that = this
+    const itemId = e.currentTarget.dataset.id
+    console.log(itemId)
+    driverDB.doc(itemId).remove({
+      success: res => {
+        wx.showToast({
+          title: '删除成功',
+          icon: 'success',
+          duration: 300,
+          mask: true
+        })
+        setTimeout(function () {
+          that.onLoad()
+        }, 300)
+      },
+      fail: function (res) {
+        console.log("删除失败", res)
+      }
+
+    })
   }
+
 })

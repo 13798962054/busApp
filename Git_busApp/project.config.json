@@ -1,4 +1,5 @@
 {
+	"cloudfunctionRoot": "cloudFunctions/",
 	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
@@ -11,7 +12,7 @@
 		"newFeature": true,
 		"autoAudits": false,
 		"coverView": true,
-    "checkSiteMap": false
+		"checkSiteMap": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
@@ -23,6 +24,7 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -65,6 +67,34 @@
 					"id": -1,
 					"name": "pages/appointment/appointment",
 					"pathName": "pages/appointment/appointment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/passenger/passenger",
+					"pathName": "pages/passenger/passenger",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/passengerPost/passengerPost",
+					"pathName": "pages/passengerPost/passengerPost",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personal/personal",
+					"pathName": "pages/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
 					"scene": null
 				}
 			]

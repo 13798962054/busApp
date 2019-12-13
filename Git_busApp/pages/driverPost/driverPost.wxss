@@ -20,7 +20,8 @@ button{
 }
 
 .toCheckboxGroup{
-  margin: auto;
+  /* margin: auto; */
+  float: left;
   /* height: 500rpx; */
 }
 

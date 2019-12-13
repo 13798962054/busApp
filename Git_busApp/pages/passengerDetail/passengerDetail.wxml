@@ -7,15 +7,7 @@
 
 <view class="info">
   <view class="line">
-    <text>车型：{{dbData.carStyle}}</text>
-  </view>
-
-  <view class="line">
     <text>发车点：{{dbData.fromPos}}</text>
-  </view>
-
-  <view class="line">
-    <text>经停点：{{dbData.parkingGroup}}</text>
   </view>
 
   <view class="line">
@@ -32,26 +24,14 @@
   </view>
 
   <view class="line">
-    <text>可坐：{{dbData.seat}}</text>
+    <text>预约行李：{{dbData.subBaggage}}</text>
   </view>
 
   <view class="line">
-    <text>已座：{{dbData.subSeat}}</text>
+    <text>备注：{{dbData.remake}}</text>
   </view>
 
   <view class="line">
-    <text>预约成员：{{dbData.subMember}}</text>
-  </view>
-
-  <view class="line">
-    <text>已经预约行李：{{dbData.subBaggage}}</text>
-  </view>
-
-  <view class="line">
-
-    <view wx:if="notDriver">
-      <button type="primary" bindtap="appointment">{{buttonMsg}}</button>
-    </view>
     <button type="cancel" bindtap="cancel">返回</button>
   </view>
 </view>

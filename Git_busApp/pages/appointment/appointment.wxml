@@ -1,5 +1,5 @@
 <view class="personalIcon">
-  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575626090590&di=8fed0d53ced83f6408f3dcbcc6c3eb32&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg4%2FM06%2F00%2F01%2FCg-4WlQG4OqIP6KgAAMf00jt8SwAARHfwFbSSAAAx_r606.jpg"></image>
+  <image src="{{dbData.iconUrl}}"></image>
 </view>
 <view class="personalName">
   <text>{{dbData.name}}</text>
@@ -8,13 +8,47 @@
 <form bindsubmit="formSubmit">
   <view class="line">
     <view class="txt">
-      <text>行李：</text>
+      <text>姓名：</text>
     </view>
     <view class="input">
-       <textarea name="input" auto-focus />
+      <input value="{{name}}" name="name"></input>
     </view>
   </view>
 
+  <view class="line">
+    <view class="txt">
+      <text>上下车：</text>
+    </view>
+    <view class="input" id="fromToPicker">
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <view class="picker">
+          {{multiArray[0][multiIndex[0]]}} -> {{multiArray[1][multiIndex[1]]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>行李：</text>
+    </view>
+    <view class="input">
+      <picker bindchange="bindBaggagePickerChange" value="{{baggageIndex}}" range="{{baggageArray}}">
+        <view class="picker">
+          {{baggageFinal}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>备注：</text>
+    </view>
+    <view class="textArea">
+      <textarea name="input"></textarea>
+    </view>
+  </view>
 
   <view class="btn">
     <button formType="submit" type="primary">预约</button>

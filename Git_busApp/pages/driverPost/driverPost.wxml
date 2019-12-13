@@ -1,5 +1,5 @@
- <view class="personalIcon">
-  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575626090590&di=8fed0d53ced83f6408f3dcbcc6c3eb32&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg4%2FM06%2F00%2F01%2FCg-4WlQG4OqIP6KgAAMf00jt8SwAARHfwFbSSAAAx_r606.jpg"></image>
+<view class="personalIcon">
+  <image src="{{iconUrl}}"></image>
 </view>
 <view class="personalName">
   <text>{{name}}</text>
@@ -36,16 +36,29 @@
     <view class="txt">
       <text>经停点：</text>
     </view>
-    <view class="input">
-      <view class="picker">{{toCheckGroup}}</view>
-    </view>
+
     <view class="toCheckboxGroup">
       <checkbox-group bindchange="toCheckboxChange">
-        <checkbox wx:for="{{toArray}}" wx:key="{{index}}" value="{{index}}">
+        <checkbox wx:for="{{parkingPoint}}" wx:key="{{index}}" value="{{item}}">
             <text>{{item}}</text>
         </checkbox>
       </checkbox-group>
     </view>
+  </view>
+
+  <view class="line">
+    <view class="txt">
+      <text>终点站：</text>
+    </view>
+
+    <view class="input">
+      <picker bindchange="bindToPickerChange" value="{{toIndex}}" range="{{toArray}}">
+        <view class="picker">
+          {{toArray[toIndex]}}
+        </view>
+      </picker>
+    </view>
+
   </view>
 
   <view class="line">

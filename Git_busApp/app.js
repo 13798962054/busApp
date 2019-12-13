@@ -32,6 +32,13 @@ App({
               }
             }
           })
+        }else{
+          wx.navigateTo({
+            url: 'pages/index/index',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+          })
         }
       }
     })

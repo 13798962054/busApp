@@ -4,6 +4,7 @@ button:not([size='mini']){
 }
 
 .item{
+  position: relative;
   padding: 20rpx;
   border: 1rpx #0f1 solid;
   margin: 20rpx;
@@ -26,12 +27,26 @@ button:not([size='mini']){
 
 .info{
   float: left;
-  margin-left: 20rpx;
+  margin-left: 80rpx;
 }
 
-.detailButton{
-  width: 200rpx;
+.deleteIcon{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  border-radius: 50%;
+  width: 75rpx;
+  height: 75rpx;
+  overflow: hidden;
+  /* background-color: #0f1; */
+  text-align: center;
+}
+.deleteIcon button{
   position: relative;
-  bottom: 180rpx;
-  left: 450rpx;
+  top: -5rpx;
+  left: -20rpx;
+}
+
+.fromTo{
+  clear: both;
 }

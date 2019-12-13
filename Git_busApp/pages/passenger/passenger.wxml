@@ -1,2 +1,21 @@
-<!--pages/passenger/passenger.wxml-->
-<text>pages/passenger/passenger.wxml</text>
+
+<button type="primary" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登陆 </button>
+<block wx:else>
+  <button type="primary" id="postButton" bindtap="toPassengerPost">{{buttonMsg}}</button> 
+
+  <view class="item" bindtap="toDetail" data-variable="{{item._id}}" wx:for="{{dbData}}" wx:key="_id">
+    <view class="personalIcon">
+      <image src="{{item.iconUrl}}"></image>
+    </view>
+    <view class="info">
+      <view class="name">{{item.name}}</view>
+      <view class="carStyle">{{item.carStyle}}</view>
+      <view class="time">{{item.date}} {{item.time}}</view>
+    </view>
+    <view class="fromTo">{{item.fromPos}} - {{item.toPos}}</view>
+    <view class="deleteIcon">
+      <button type="warn" catchtap="deleteItem" data-id="{{item._id}}">X</button>
+    </view>
+  </view>
+</block>
+

@@ -2,14 +2,17 @@
 const db = wx.cloud.database()
 const driverDB = db.collection("driver")
 const settingDB = db.collection("appSetting")
+const DAPUnionDB = db.collection("DAPUnion")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 发车人头像
+    iconUrl: "",
     // 发车人姓名
-    name: "owen",
+    name: "",
     // 车型
     carStyleIndex: 0,
     carStyleArray: [],
@@ -17,9 +20,11 @@ Page({
     fromIndex: 0,
     fromArray: [],
     // 经停点
+    parkingPoint: [],
+    parkingGroup: [],
+    // 终点
     toIndex: 0,
     toArray: [],
-    toCheckGroup: [],
     // 发车时间
     date: '',
     time: '',
@@ -29,7 +34,11 @@ Page({
     // 已预约座位
     subSeat: 0,
     // 已预约行李
-    subBaggage: ""
+    subBaggage: [],
+    // 已预约成员
+    subMember: [],
+    // 备注
+    remake: ""
   },
 
   padStart: function (len, str) {
@@ -45,7 +54,20 @@ Page({
    */
   onLoad: function (options) {
     const that = this
-    
+    let nickName = ""
+    let iconUrl = ""
+    wx.getUserInfo({
+      success: function (res) {
+        const userInfo = res.userInfo
+        nickName = userInfo.nickName
+        iconUrl = userInfo.avatarUrl
+        that.setData({
+          name: nickName,
+          iconUrl: iconUrl
+        })
+      }
+    })
+
     // 获取系统当前时间
     const time = new Date()
     const years = that.padStart(2, time.getFullYear())
@@ -55,6 +77,7 @@ Page({
     let minutes = that.padStart(2, time.getMinutes())
 
     that.setData({
+
       date: years + "-" + month + "-" + day,
       time: hours + ":" + minutes
     })
@@ -65,10 +88,11 @@ Page({
     settingDB.get({
       success: res => {
         res = res.data[0]
-        this.setData({
+        that.setData({
           carStyleArray: res.cars,
           fromArray: res.from,
-          toArray: res.parkingPoint,
+          parkingPoint: res.parkingPoint,
+          toArray: res.to,
           seatArray: res.carSeat
         })
       }
@@ -153,6 +177,17 @@ Page({
    */
   toCheckboxChange: function(e){
     console.log(e.detail.value)
+    this.setData({
+      parkingGroup: e.detail.value
+    })
+  },
+  /*
+   * 终点选择器绑定
+   */
+  bindToPickerChange: function (e) {
+    this.setData({
+      toIndex: e.detail.value
+    })
   },
 
   /*
@@ -187,17 +222,22 @@ Page({
    */
   check: function (e) {
     const that = this.data
+    
     driverDB.add({
       data: {
         name: that.name,
+        iconUrl: that.iconUrl,
         carStyle: that.carStyleArray[that.carStyleIndex],
         fromPos: that.fromArray[that.fromIndex],
+        parkingGroup: that.parkingGroup,
         toPos: that.toArray[that.toIndex],
         date: that.date,
         time: that.time,
         seat: that.seatArray[that.seatIndex],
         subSeat: that.subSeat,
-        subBaggage: that.subBaggage
+        subBaggage: that.subBaggage,
+        subMember: that.subMember,
+        remake: that.remake
       },
       success: res => {
         wx.showToast({
@@ -205,6 +245,13 @@ Page({
           icon: 'success',
           duration: 300,
           mask: true
+        })
+        console.log(res._id)
+        DAPUnionDB.add({
+          data: {
+            type: "driver",
+            typeid: res._id
+          }
         })
         setTimeout(function(){
           wx.navigateBack({

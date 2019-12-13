@@ -1,2 +1,91 @@
-<!--pages/passengerPost/passengerPost.wxml-->
-<text>pages/passengerPost/passengerPost.wxml</text>
+<view class="personalIcon">
+  <image src="{{iconUrl}}"></image>
+</view>
+<view class="personalName">
+  <text>{{name}}</text>
+</view>
+
+
+<view class="line">
+  <view class="txt">
+    <text>发车点：</text>
+  </view>
+  <view class="input">
+    <picker bindchange="bindFromPickerChange" value="{{fromIndex}}" range="{{fromArray}}">
+      <view class="picker">
+        {{fromArray[fromIndex]}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+
+<view class="line">
+  <view class="txt">
+    <text>终点站：</text>
+  </view>
+
+  <view class="input">
+    <picker bindchange="bindToPickerChange" value="{{toIndex}}" range="{{toArray}}">
+      <view class="picker">
+        {{toArray[toIndex]}}
+      </view>
+    </picker>
+  </view>
+
+</view>
+
+<view class="line">
+  <view class="txt">
+    <text>出发日期：</text>
+  </view>
+  <view class="input">
+    <picker mode="date" value="{{date}}" start="2019-12-12" end="2022-12-12" bindchange="bindDateChange">
+      <view class="picker">
+        {{date}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="line">
+  <view class="txt">
+    <text>出发时间：</text>
+  </view>
+  <view class="input">
+    <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+      <view class="picker">
+        {{time}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="line">
+  <view class="txt">
+    <text>行李：</text>
+  </view>
+  <view class="input">
+    <picker bindchange="bindBaggagePickerChange" value="{{baggageIndex}}" range="{{baggageArray}}">
+      <view class="picker">
+        {{baggageFinal}}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="line">
+  <view class="txt">
+    <text>备注：</text>
+  </view>
+  <view class="textArea">
+    <textarea bindinput="bindTextAreaChange" value="{{textArea}}" ></textarea>
+  </view>
+</view>
+
+
+
+<view class="line">
+  <button type="primary" bindtap="check">约车</button>
+  <button type="cancel" bindtap="cancel">取消</button>
+</view>

@@ -1,12 +1,16 @@
 {
   "pages": [
+    
     "pages/driver/driver",
-    "pages/passenger/passenger",
-    "pages/driverPost/driverPost",
-    "pages/passengerPost/passengerPost",
     "pages/driverDetail/driverDetail",
     "pages/appointment/appointment",
+    "pages/driverPost/driverPost",
+    "pages/passenger/passenger",
+    "pages/passengerPost/passengerPost",
+    "pages/passengerDetail/passengerDetail",
+    "pages/personal/personal",
     "pages/index/index",
+    "pages/test/test",
     "pages/logs/logs"
   ],
   "window": {
@@ -26,6 +30,12 @@
       {
         "pagePath": "pages/passenger/passenger",
         "text": "乘客",
+        "iconPath": "utils/img/car.png",
+        "selectedIconPath": "utils/img/carSelected.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
         "iconPath": "utils/img/car.png",
         "selectedIconPath": "utils/img/carSelected.png"
       }

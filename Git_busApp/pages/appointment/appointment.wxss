@@ -1,6 +1,65 @@
-.input textarea{
+.personalName{
+  margin-bottom: 50rpx;
+}
+
+/* #fromToPicker{
+  display: inline-block;
+  width: 480rpx;
+  height: 200rpx;
   border: 1px #ccc solid;
-  width: 580rpx;
-  margin: auto;
-  padding: 25rpx 40rpx;
+}
+
+.fromToPicker .picker{
+  height: 200rpx;
+  border: 0;
+} */
+
+.input{
+  /* height: 100rpx; */
+  border: 1px solid #ccc;
+  display: block;
+  float: left;
+  margin: 20rpx 0;
+}
+.input input{
+  display: inline-block;
+  width: 360rpx;
+  height: 100%;
+  padding: 0 40rpx;
+}
+
+.txt{
+  display: block;
+  width: 150rpx;
+  text-align: right;
+  float: left;
+  margin: 20rpx 0;
+}
+
+.picker{
+  display: inline-block;
+  width: 360rpx;
+  height: 100rpx;
+  /* border: 1px solid #ccc; */
+  padding: 0 40rpx;
+}
+
+.textArea{
+  float: left;
+  display: inline-block;
+  border: 1px #ccc solid;
+  width: 380rpx;
+  height: 240rpx;
+  margin-bottom: 50rpx;
+  padding: 30rpx;
+}
+
+.textArea textarea{
+  width: 100%;
+  height: 100%;
+  line-height: 2rem;
+}
+
+.btn{
+  margin-top: 50rpx;
 }

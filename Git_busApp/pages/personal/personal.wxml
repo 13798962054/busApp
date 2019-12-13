@@ -1,0 +1,1 @@
+<button type="primary" bindTap="buttonListener">{{btnMsg}}</button>
