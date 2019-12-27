@@ -1,4 +1,5 @@
 const driverDB = wx.cloud.database().collection("driver")
+const passengerDB = wx.cloud.database().collection("passenger")
 const DAPUnionDB = wx.cloud.database().collection("DAPUnion")
 Page({
 
@@ -10,7 +11,9 @@ Page({
     id: "",
     // 是否为发车人
     isDriver: false,
-    buttonMsg: "预约车主"
+    buttonMsg: "预约车主",
+    // 预约乘客姓名
+    subMemberName: []
   },
 
   /**
@@ -19,10 +22,28 @@ Page({
   onLoad: function (options) {
     const that = this
     console.log(options.id)
+    // 获取driver集合该条详细信息
     driverDB.where({
       _id: options.id
     }).get().then( res => {
       console.log(res)
+      // 乘车人员ID
+      const subMemberIdArray = res.data[0].subMember
+      let subMemberNameArray = []
+      for(let i = 0 ; i < subMemberIdArray.length ; i++){
+        passengerDB.doc(subMemberIdArray[i]).get({
+          success: passengerRes => {
+            console.log("乘客", passengerRes)
+            subMemberNameArray.push(passengerRes.data.name)
+            that.setData({
+              subMemberName: subMemberNameArray
+            })
+            console.log(that.data.subMemberName)
+          }
+        })
+      }
+      console.log(subMemberNameArray)
+  
       that.setData({
         dbData: res.data[0],
         id: options.id
@@ -160,11 +181,11 @@ Page({
   },
 
   /**
-   * 监听取消按钮
+   * 监听返回按钮 
    */
   cancel: function(e){
-    wx.navigateBack({
-      
+    wx.switchTab({
+      url: '../driver/driver',
     })
   }
 })

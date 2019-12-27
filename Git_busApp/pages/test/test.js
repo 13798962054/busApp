@@ -1,6 +1,7 @@
 // pages/test/test.js
+const driverDB = wx.cloud.database().collection("driver")
 Page({
-
+  
   /**
    * 页面的初始数据
    */
@@ -12,19 +13,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'add',
-      // 传给云函数的参数
-      data: {
-        a: 1,
-        b: 2,
-      },
-      success: function (res) {
-        console.log(res) // 3
-      },
-      fail: console.error
-    })
+    let a = 0
+    var promise = new Promise(function (resolve, reject) {
+      let i = 0
+      for (; i < 10; i++) {
+        driverDB.get({
+          success: res => {
+            a++
+            console.log(a)
+          }
+        })
+      }
+      if (i == 9) {
+        resolve("va");
+      } else {
+        reject("error");
+      }
+    });
+
+    promise.then(function (value) {
+      console.log(a)
+    }, function (value) {
+      // failure
+    });
   },
 
   /**

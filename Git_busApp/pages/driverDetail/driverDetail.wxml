@@ -40,7 +40,7 @@
   </view>
 
   <view class="line">
-    <text>预约成员：{{dbData.subMember}}</text>
+    <text>预约成员：{{subMemberName}}</text>
   </view>
 
   <view class="line">

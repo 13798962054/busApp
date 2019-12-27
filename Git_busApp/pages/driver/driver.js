@@ -87,6 +87,7 @@ Page({
       })
     }
 
+    // 获取driver集合信息
     driverDB.get({
       success: res => {
         this.setData({
@@ -98,7 +99,6 @@ Page({
       }
     })
   },
-
   getUserInfo: function (e) {
     console.log(e)
     if(e.detail.userInfo){

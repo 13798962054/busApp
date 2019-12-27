@@ -12,8 +12,6 @@ exports.main = async (event, context) => {
   return await driverDB.doc(event.id).update({
     data: {
       subMember: event.subMember,
-      subBaggage: event.subBaggage,
-      remake: event.remake,
       subSeat: event.subSeat
     },
     success: res => {

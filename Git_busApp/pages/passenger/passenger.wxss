@@ -3,10 +3,19 @@ button:not([size='mini']){
   width: 100%;
 }
 
+#postButton{
+  background:linear-gradient(35deg, #33193d 0%, #0066a4 70%, #0066a4 100%);
+  margin: 20rpx;
+  width: 712rpx;
+}
+
 .item{
   position: relative;
   padding: 20rpx;
-  border: 1rpx #0f1 solid;
+  background: linear-gradient(30deg, #33193d 0%, #7e3d90 80%, #7e3d90 100%);
+  width: 672rpx;
+  border-radius: 10rpx;
+  color: #fff;
   margin: 20rpx;
   height: 320rpx; 
   line-height: 80rpx;
@@ -32,21 +41,26 @@ button:not([size='mini']){
 
 .deleteIcon{
   position: absolute;
-  right: 20rpx;
-  top: 20rpx;
-  border-radius: 50%;
+  right: 40rpx;
+  top: 20rpx;  
   width: 75rpx;
   height: 75rpx;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* background-color: #0f1; */
   text-align: center;
 }
 .deleteIcon button{
   position: relative;
-  top: -5rpx;
-  left: -20rpx;
-}
 
+  border-radius: 50%;
+  text-align: center;
+  color: #f22;
+  background: linear-gradient(35deg, #33193d 0%, #0066a4 70%, #0066a4 100%);
+}
+.deleteIcon button span{
+  position: relative;
+  left: -10rpx;
+}
 .fromTo{
   clear: both;
 }

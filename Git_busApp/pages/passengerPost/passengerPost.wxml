@@ -86,6 +86,6 @@
 
 
 <view class="line">
-  <button type="primary" bindtap="check">约车</button>
+  <button type="primary" bindtap="check" disabled="{{disabled}}">约车</button>
   <button type="cancel" bindtap="cancel">取消</button>
 </view>

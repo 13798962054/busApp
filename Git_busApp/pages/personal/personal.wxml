@@ -1,1 +1,52 @@
-<button type="primary" bindTap="buttonListener">{{btnMsg}}</button>
+<view class="personalIcon">
+  <image src="{{iconUrl}}"></image>
+</view>
+<view class="personalName">
+  <text>{{name}}</text>
+</view>
+
+<view class="info" wx:if="{{hasPost}}">
+  <!-- 发车时间／约车时间 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{timeTxt}} ：   {{time}}</text>
+    </view>
+  </view>
+  <!-- 起点／上车点 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{fromPosTxt}} ：   {{fromPos}}</text>
+    </view>
+  </view>
+  <!-- 终点／下车点 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{toPosTxt}} ：   {{toPos}}</text>
+    </view>
+  </view>
+  <!-- 行李 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{baggageTxt}} ：   {{baggage}}</text>
+    </view>
+  </view>
+  
+  <!-- 乘车人／司机 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{driverTxt}} ：   {{driver}}</text>
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="line">
+    <view class="txt">
+      <text>{{remakeTxt}} ：</text>
+    </view>
+    <view class="remake">
+      <text> {{remake}}</text>
+    </view>
+  </view>
+</view>
+<button type="warn" bindtap="cancel">取消</button>
+

@@ -101,7 +101,7 @@
   </view>
 
   <view class="line">
-    <button type="primary" bindtap="check">发布</button>
+    <button type="primary" bindtap="check" disabled="{{disabled}}">发布</button>
     <button type="cancel" bindtap="cancel">取消</button>
   </view>
 </view>

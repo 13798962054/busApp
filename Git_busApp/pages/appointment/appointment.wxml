@@ -51,7 +51,7 @@
   </view>
 
   <view class="btn">
-    <button formType="submit" type="primary">预约</button>
+    <button formType="submit" type="primary" disabled="{{disabled}}">预约</button>
     <button bindtap="cancel">返回</button>
   </view>
 </form>

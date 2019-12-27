@@ -11,6 +11,7 @@
     "pages/personal/personal",
     "pages/index/index",
     "pages/test/test",
+    "pages/all/all",
     "pages/logs/logs"
   ],
   "window": {
@@ -21,6 +22,12 @@
   },
   "tabBar": {
     "list": [
+      {
+        "pagePath": "pages/all/all",
+        "text": "汇总",
+        "iconPath": "utils/img/car.png",
+        "selectedIconPath": "utils/img/carSelected.png"
+      },
       {
         "pagePath": "pages/driver/driver",
         "text": "司机",
@@ -39,6 +46,7 @@
         "iconPath": "utils/img/car.png",
         "selectedIconPath": "utils/img/carSelected.png"
       }
+      
     ]
   },
 

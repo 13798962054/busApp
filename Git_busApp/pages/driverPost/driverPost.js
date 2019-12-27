@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled: false,
     // 发车人头像
     iconUrl: "",
     // 发车人姓名
@@ -27,9 +28,9 @@ Page({
     toArray: [],
     // 发车时间
     date: '',
-    time: '',
+    time: '', 
     // 座位
-    seatIndex: 0,
+    seatIndex: 3,
     seatArray: [],
     // 已预约座位
     subSeat: 0,
@@ -159,8 +160,9 @@ Page({
   bindCarStylePickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      carStyleIndex: e.detail.value,
-      seatIndex: e.detail.value
+      carStyleIndex: e.detail.value
+      // 座位数量根据车型改变
+      // seatIndex: e.detail.value
     })
   },
   /*
@@ -221,8 +223,10 @@ Page({
    * 发布按钮监听器
    */
   check: function (e) {
+    this.setData({
+      disabled: true
+    })
     const that = this.data
-    
     driverDB.add({
       data: {
         name: that.name,
@@ -240,18 +244,19 @@ Page({
         remake: that.remake
       },
       success: res => {
-        wx.showToast({
-          title: '发布成功',
-          icon: 'success',
-          duration: 300,
-          mask: true
-        })
+        
         console.log(res._id)
         DAPUnionDB.add({
           data: {
             type: "driver",
             typeid: res._id
           }
+        })
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          duration: 300,
+          mask: true
         })
         setTimeout(function(){
           wx.navigateBack({

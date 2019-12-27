@@ -2,12 +2,14 @@
 const db = wx.cloud.database()
 const passengerDB = db.collection("passenger")
 const settingDB = db.collection("appSetting")
+const DAPUnionDB = db.collection("DAPUnion")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    disabled: false,
     // 发车人头像
     iconUrl: "",
     // 发起人姓名
@@ -26,7 +28,9 @@ Page({
     baggageIndex: 0,
     baggageFinal: [],
     // 备注
-    textArea: ""
+    textArea: "",
+    // 司机
+    driver: ""
     
   },
 
@@ -198,6 +202,9 @@ Page({
    * 发布按钮监听器
    */
   check: function (e) {
+    this.setData({
+      disabled: true
+    })
     const that = this.data
     passengerDB.add({
       data: {
@@ -208,9 +215,18 @@ Page({
         date: that.date,
         time: that.time,
         baggage: that.baggageFinal,
-        remake: that.textArea
+        remake: that.textArea,
+        driver: that.driver
       },
       success: res => {
+        console.log(res)
+        DAPUnionDB.add({
+          data: {
+            type: "passengerWaiting",
+            typeid: res._id
+          }
+        })
+
         wx.showToast({
           title: '发布成功',
           icon: 'success',

@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     wx.cloud.init({
-      env: 'sql-424ae6'
+      env: 'bus-8848'
     })
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -34,7 +34,7 @@ App({
           })
         }else{
           wx.navigateTo({
-            url: 'pages/index/index',
+            url: 'pages/all/all',
             success: function(res) {},
             fail: function(res) {},
             complete: function(res) {},

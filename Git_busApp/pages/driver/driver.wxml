@@ -14,7 +14,7 @@
     </view>
     <view class="fromTo">{{item.fromPos}} - {{item.toPos}}</view>
     <view class="deleteIcon">
-      <button type="warn" catchtap="deleteItem" data-id="{{item._id}}">X</button>
+      <button catchtap="deleteItem" data-id="{{item._id}}"><span>X</span></button>
     </view>
   </view>
 </block>

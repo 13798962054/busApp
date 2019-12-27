@@ -16,15 +16,15 @@
   
 
   <view class="line">
-    <text>发车日期：{{dbData.date}}</text>
+    <text>预约日期：{{dbData.date}}</text>
   </view>
 
   <view class="line">
-    <text>发车时间：{{dbData.time}}</text>
+    <text>预约时间：{{dbData.time}}</text>
   </view>
 
   <view class="line">
-    <text>预约行李：{{dbData.subBaggage}}</text>
+    <text>预约行李：{{dbData.baggage}}</text>
   </view>
 
   <view class="line">

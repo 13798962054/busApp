@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled: false,
     id: "",
     name: "",
     dbData: "",
@@ -51,7 +52,6 @@ Page({
     driverDB.where({
       _id: options.id
     }).get().then(res => {
-      console.log(res)
       let tempFromTo = []
       tempFromTo.push(res.data[0].fromPos)
       for(let i = 0; i < res.data[0].parkingGroup.length; i++){
@@ -74,7 +74,6 @@ Page({
         fromToArray: tempFromTo,
         multiArray: tempMulti
       })
-      console.log(that.data.dbData)
     })
   },
 
@@ -130,13 +129,11 @@ Page({
    * 上下车选择器
    */
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
   },
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -148,7 +145,6 @@ Page({
       data.multiIndex[1] = 0;
       break;
     }
-    console.log(data.multiIndex);
     this.setData(data);
   },
 
@@ -160,7 +156,6 @@ Page({
     let currentBaggageFinal = this.data.baggageFinal
     let currentBaggage = this.data.baggageArray[e.detail.value]
     currentBaggageFinal.push(currentBaggage)
-    console.log()
     this.setData({
       baggageFinal: currentBaggageFinal
     })
@@ -172,6 +167,9 @@ Page({
    */
   formSubmit: function(e){
     const that = this
+    that.setData({
+      disabled: true
+    })
     const name = e.detail.value.name
     const input = e.detail.value.input
     let currentMember = []
@@ -179,88 +177,80 @@ Page({
     let subSeat = 0
     
     driverDB.doc(that.data.id).get({
-      success: function(res){
-        subSeat = res.data.subSeat
-        const seat = res.data.seat
+      success: function(driverRes){
+        subSeat = driverRes.data.subSeat
+        const seat = driverRes.data.seat
         // 时间
-        const time = res.data.time
+        const time = driverRes.data.time
         // 日期
-        const date = res.data.date
+        const date = driverRes.data.date
 
         if(subSeat < seat){
           subSeat++
           console.log(subSeat)
+          // 乘车人员
+          currentMember = driverRes.data.subMember
           // 行李
-          currentMember = res.data.subMember
-          currentMember.push(name)
-          currentBaggage = res.data.subBaggage
+          currentBaggage = driverRes.data.subBaggage
           for (let i = 0 ; i < that.data.baggageFinal.length; i++){
             currentBaggage.push(that.data.baggageFinal[i])
           }
           // 备注
-          let currentRemake = res.data.remake + name + "：" + input + "\n"
-
+          let currentRemake = ""
+          if(input != ""){
+            currentRemake = driverRes.data.remake + name + "：" + input + "\n"
+          }
           console.log("------")
           console.log(that.data.id)
           console.log(currentMember)
           console.log(currentBaggage)
           console.log(currentRemake)
 
-
-          wx.cloud.callFunction({
-            name: "updateDriver",
+        
+          passengerDB.add({
             data: {
-              id: that.data.id,
-              subMember: currentMember,
-              subBaggage: currentBaggage,
-              remake: currentRemake,
-              subSeat: subSeat
+              name: name,
+              iconUrl: that.data.iconUrl,
+              fromPos: that.data.multiArray[0][that.data.multiIndex[0]],
+              toPos: that.data.multiArray[1][that.data.multiIndex[1]],
+              date: date,
+              time: time,
+              baggage: that.data.baggageFinal,
+              remake: input,
+              driver: driverRes.data.name
             },
-            success: res => {
-              console.log("update success", res)
+            success: passengerRes => {
+              currentMember.push(passengerRes._id)
+              wx.cloud.callFunction({
+                name: "updateDriver",
+                data: {
+                  id: that.data.id,
+                  subMember: currentMember,
+                  subBaggage: currentBaggage,
+                  remake: currentRemake,
+                  subSeat: subSeat
+                },
+              })
               DAPUnionDB.add({
                 data: {
                   type: "passenger",
-                  typeid: that.data.id
+                  typeid: that.data.id,
+                  passengerid: passengerRes._id
                 },
-                success: res => {
-                  console.log("DAP su", res)
-              
-                  passengerDB.add({
-                    data: {
-                      name: name,
-                      iconUrl: that.data.iconUrl,
-                      fromPos: that.data.multiArray[0][that.data.multiIndex[0]],
-                      toPos: that.data.multiArray[1][that.data.multiIndex[1]],
-                      date: date,
-                      time: time,
-                      baggage: that.data.baggageFinal,
-                      remake: input
-                    },
-                    success: res => {
-                      console.log("pas succ", res)
-                      wx.showToast({
-                        title: "约车成功",
-                        icon: 'success',
-                        duration: 300,
-                        mask: true
-                      })
-                      setTimeout(function () {
-                        wx.navigateTo({
-                          url: '../driverDetail/driverDetail?id=' + that.data.id,
-
-                        })
-                      }, 300)
-                    },
-                    fail: res => {
-                      console.log("pas fail", res)
-                    }
+                success: DAPRes => {
+                  wx.showToast({
+                    title: "约车成功",
+                    icon: 'success',
+                    duration: 300,
+                    mask: true
                   })
-                },
-                fail: res => {
-                  console.log("DAPfail", res)
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '../driverDetail/driverDetail?id=' + that.data.id,
+                    })
+                  },300)    
                 }
-              })   
+              })
             },
             fail: res => {
               wx.showToast({
@@ -274,26 +264,25 @@ Page({
                   url: '../driverDetail/driverDetail?id=' + that.data.id,
 
                 })
-              }, 300)
+              }, 700)
             }
-          })
+          })  
         }
         else{
           wx.showToast({
             title: "已满",
             icon: 'fail',
-            duration: 600,
+            duration: 700,
             mask: true
           })
           setTimeout(function () {
-            wx.navigateBack({
+            wx.navigateTo({
+              url: '../driverDetail/driverDetail?id=' + that.data.id,
 
             })
-          }, 600)
+          }, 700)
         }
-        
       },
-
       fail: function(res){
         console.log("没有发车信息", res)
       }
